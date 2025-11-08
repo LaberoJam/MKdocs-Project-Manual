@@ -1,0 +1,85 @@
+site_name: Какая-то там дисциплина
+site_url: https://sitename.example
+
+use_directory_urls: false # Для рабочей оффлайн навигации 
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+
+  palette: 
+  
+    # Palette toggle for light mode
+    - scheme: default
+      toggle:
+        icon: material/brightness-7 
+                
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+nav:
+  - Главная: index.md
+  - Лабораторные работы:
+      - "1 Коммутатор, средства управления и начальная настройка": lab1/lab1.md
+      - "Лабораторная работа №2": lab2/lab2.md
+      - "Лабораторная работа №3": lab3/lab3.md
+      - "Лабораторная работа 4" : lab4.md
+
+markdown_extensions:
+# Базовые расширения
+- abbr
+- attr_list
+- def_list
+- footnotes
+- md_in_html
+- toc:
+    permalink: true
+- admonition
+
+
+# Расширения Pygments для подсветки кода
+- pymdownx.arithmatex:
+    generic: true
+- pymdownx.betterem:
+    smart_enable: all
+- pymdownx.caret
+- pymdownx.details
+- pymdownx.emoji:
+    emoji_generator: !!python/name:material.extensions.emoji.to_svg
+    emoji_index: !!python/name:material.extensions.emoji.twemoji
+- pymdownx.highlight:
+    anchor_linenums: true
+    line_spans: __span
+    pygments_lang_class: true
+- pymdownx.inlinehilite
+- pymdownx.keys
+- pymdownx.magiclink:
+    normalize_issue_symbols: true
+    repo_url_shorthand: true
+    user: squidfunk
+    repo: mkdocs-material
+- pymdownx.mark
+- pymdownx.smartsymbols
+- pymdownx.snippets:
+    auto_append:
+      - includes/mkdocs.md
+- pymdownx.superfences:
+    custom_fences:
+      - name: mermaid
+        class: mermaid
+        format: !!python/name:pymdownx.superfences.fence_code_format
+- pymdownx.tabbed:
+    alternate_style: true
+- pymdownx.tasklist:
+    custom_checkbox: true
+- pymdownx.tilde
+
+
