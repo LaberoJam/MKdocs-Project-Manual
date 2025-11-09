@@ -176,7 +176,106 @@ Web-интерфейс является удобной альтернативо�
 
 ### Контрольные вопросы
 
-1.  Какие существуют уровни привилегий и какие функции доступны им?
-2.  Какие порты управления через Web-интерфейс и Telnet по-умолчанию?
-3.  Что такое Telnet?
-4.  Зачем нужно настраивать время на сетевом оборудовании?
+<div class="custom-quiz" id="quiz-lab1">
+  <h4>Вопрос 1: Какие существуют уровни привилегий и какие функции доступны им?</h4>
+  <div class="quiz-question" data-question="1">
+    <label><input type="radio" name="q1" value="a"> Root, User, Guest</label><br>
+    <label><input type="radio" name="q1" value="b"> Admin, Operator, Power User, User</label><br>
+    <label><input type="radio" name="q1" value="c"> Manager, Operator, Guest</label><br>
+    <label><input type="radio" name="q1" value="d"> Super-Admin, Admin, User</label>
+  </div>
+
+  <h4>Вопрос 2: Какие порты управления через Web-интерфейс и Telnet используются по умолчанию?</h4>
+  <div class="quiz-question" data-question="2">
+    <label><input type="radio" name="q2" value="a"> Web: 8080, Telnet: 2323</label><br>
+    <label><input type="radio" name="q2" value="b"> Web: 443, Telnet: 22</label><br>
+    <label><input type="radio" name="q2" value="c"> Web: 80, Telnet: 23</label><br>
+    <label><input type="radio" name="q2" value="d"> Web: 80, Telnet: 21</label>
+  </div>
+
+  <h4>Вопрос 3: Что такое Telnet?</h4>
+  <div class="quiz-question" data-question="3">
+    <label><input type="radio" name="q3" value="a"> Протокол для автоматической настройки IP-адреса.</label><br>
+    <label><input type="radio" name="q3" value="b"> Протокол для безопасной передачи файлов.</label><br>
+    <label><input type="radio" name="q3" value="c"> Протокол для текстового удаленного управления устройством через сеть.</label><br>
+    <label><input type="radio" name="q3" value="d"> Протокол для передачи голосового трафика.</label>
+  </div>
+
+  <h4>Вопрос 4: Зачем нужно настраивать время на сетевом оборудовании?</h4>
+  <div class="quiz-question" data-question="4">
+    <label><input type="radio" name="q4" value="a"> Для ускорения обработки пакетов.</label><br>
+    <label><input type="radio" name="q4" value="b"> Для корректной работы журналов (логов), аудита и мониторинга.</label><br>
+    <label><input type="radio" name="q4" value="c"> Для увеличения пропускной способности портов.</label><br>
+    <label><input type="radio" name="q4" value="d"> Для автоматического определения скорости соединения.</label>
+  </div>
+
+  <button class="md-button md-button--primary" onclick="checkQuiz('quiz-lab1', {'q1': 'b', 'q2': 'c', 'q3': 'c', 'q4': 'b'})">Проверить ответы</button>
+  <div id="quiz-lab1-result" class="quiz-result"></div>
+</div>
+
+<script>
+  function checkQuiz(quizId, correctAnswers) {
+    const resultDiv = document.getElementById(quizId + '-result');
+    const quizContainer = document.getElementById(quizId);
+    let correctCount = 0;
+    let totalCount = Object.keys(correctAnswers).length;
+
+    // Сначала сбрасываем стили со всех вопросов в этом тесте
+    quizContainer.querySelectorAll('.quiz-question').forEach(q => {
+      q.classList.remove('correct', 'incorrect');
+    });
+
+    // Проверяем каждый ответ
+    for (const questionName in correctAnswers) {
+      const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
+      const questionDiv = selectedOption ? selectedOption.closest('.quiz-question') : null;
+
+      if (selectedOption && selectedOption.value === correctAnswers[questionName]) {
+        if(questionDiv) questionDiv.classList.add('correct');
+        correctCount++;
+      } else {
+        if(questionDiv) questionDiv.classList.add('incorrect');
+      }
+    }
+
+    // Формируем итоговое сообщение
+    let resultHtml = `<h4>Результаты теста</h4><p>Вы ответили правильно на ${correctCount} из ${totalCount} вопросов.</p>`;
+    
+    if (correctCount === totalCount) {
+      resultHtml += '<p style="color: green; font-weight: bold;">Отлично! Все ответы верны.</p>';
+    } else {
+      resultHtml += '<p style="color: red;">Есть ошибки. Внимательно перечитайте вопросы и попробуйте снова.</p>';
+    }
+
+    resultDiv.innerHTML = resultHtml;
+  }
+</script>
+
+<style>
+  .custom-quiz {
+    border: 1px solid var(--md-default-fg-color--lightest);
+    padding: 1.5em;
+    border-radius: 8px;
+    margin-top: 1em;
+  }
+  .quiz-question {
+    margin-bottom: 1em;
+    padding: 0.5em;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  .quiz-question.correct {
+    background-color: rgba(76, 175, 80, 0.15); /* Более яркий зеленый */
+    border-left: 4px solid #4CAF50;
+  }
+  .quiz-question.incorrect {
+    background-color: rgba(244, 67, 54, 0.15); /* Более яркий красный */
+    border-left: 4px solid #F44336;
+  }
+  .quiz-result {
+    margin-top: 1.5em;
+    padding: 1em;
+    background-color: var(--md-code-bg-color);
+    border-radius: 4px;
+  }
+</style>
