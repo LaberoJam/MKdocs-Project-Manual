@@ -9,6 +9,7 @@ theme:
     - navigation.tabs
     - navigation.sections
     - toc.integrate
+    
 
   palette: 
   
@@ -25,12 +26,16 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
 
+extra_css:
+- ./extra.css
+
 nav:
   - Главная: index.md
   - Лабораторные работы:
       - "1.Коммутатор, средства управления и начальная настройка": lab1/lab1.md
       - "2.Виртуальные локальные сети (VLAN)": lab2/lab2.md
       - "3.Протокол STP (Spanning Tree Protocol)": lab3/lab3.md
+
 
 markdown_extensions:
 # Базовые расширения
@@ -42,7 +47,6 @@ markdown_extensions:
 - toc:
     permalink: true
 - admonition
-
 
 # Расширения Pygments для подсветки кода
 - pymdownx.arithmatex:
@@ -80,5 +84,3 @@ markdown_extensions:
 - pymdownx.tasklist:
     custom_checkbox: true
 - pymdownx.tilde
-
-
